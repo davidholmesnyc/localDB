@@ -1,6 +1,4 @@
 (function(){
-
-
 var storage = {}
 storage.helperFunctions = {}
   storage.get = function(key){
@@ -71,32 +69,36 @@ storage.helperFunctions = {}
     return s
   }
   storage.update  = function(database,whereobject,replace){
-    // storage.update('employee', {employeeID: id}, 10 )
-    if(!whereobject){
-    	localStorage.removeItem(key);
-    	return true;
+  	// storage.update('employee', {id: id}, {body:"true"} ) // for arrays of objects
+    // storage.update('employee', {body:true}) // for single objects .. no need to do a lockup 
+    // storage.update('employee', "David" ) // for strings
+		var array = storage.get(database)
+    
+    if(storage.typeof(array) === 'string' ){
+			var array = whereobject
+    	return storage.set(database,array)
     }
-    var array = storage.get(database)
-    if(storage.typeof(array) === 'object' ){
-      var arrayCache = array
-      var array = []
-      array.push(arrayCache)
+    
+    var object_key = Object.keys(whereobject)[0];
+    var search_object = Object.keys(whereobject);
+    
+		
+		if(storage.typeof(array) === 'object' ){
+			var array = _.extend(array,whereobject)
+      return storage.set(database,array)
     }
-    b1 = whereobject
-    b2 = ''
-    var filteredArray = _.filter(array, function(object) {
-    	console.log(object)
-    	b2 = object
-    	return object
-        if( object[ Object.keys(whereobject)[0] ] != whereobject[ Object.keys(whereobject)[0] ])
-          return object; 
-    })
-    //arr = _.without(array, _.findWhere(array,whereobject ));
 
-    filteredArray.push(replace)
-    //console.log('filteredArraydfdfd',filteredArray)
-
-    return storage.set(database,filteredArray)
+    if(storage.typeof(array) === 'array' ){
+    	var replace_key = Object.keys(replace)[0];
+    	var map = _.map(array,function(object){
+	    	if( object[ object_key ] ===  whereobject[ object_key] ){
+	    		_.extend(object,replace)
+	    	}
+	    	return object
+	    })
+    	return storage.set(database,map)
+		}
+   
   }
 
   storage.delete = function(key,whereobject){
