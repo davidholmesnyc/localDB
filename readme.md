@@ -6,18 +6,34 @@
 
 Work in progress
 
+### localdb.create 
+```javascript
+  localDB.create("employess",[])
+``
+### localdb.select
+```javascript
+  localdb.select("employees")
+```
+
+### localdb.add 
+```javascript
+  localdb.select("employees").add({
+  name:"David Holmes"
+  address:"123 main st.",
+  state:"NY",
+  city:"NY",
+  ssn:"555-55-555",
+})
+
+
+```
+
 ### localDB.update( key, search_object || replace , replace )
 
-update works a little different depending on what data you have in the value
-
-For strings and single objects you only need two arguments - a key and what to update it with. 
-
-For collections you need to have an ID that we can look up in the second argument and the third argument will be the one we use to update that object.
-
 ```javascript
-  localDB.update('employee', "David" ) // for strings
-  localDB.update('employee', {address:"123 main st"}) // for single objects .. no need to do a lookup 
-  localDB.update('employee', {id: 1} , {address:"123 main st"} ) // for collections
+  localDB.update('employees', "David" ) // for strings
+  localDB.update('employees', {address:"123 main st"}) // for single objects .. no need to do a lookup 
+  localDB.update('employees', {id: 1} , {address:"123 main st"} ) // for collections
  
 ```
  
