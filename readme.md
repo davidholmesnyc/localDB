@@ -9,7 +9,7 @@ Work in progress
 ### localdb.create 
 ```javascript
   localDB.create("employess",[])
-``
+```
 ### localdb.select
 ```javascript
   localdb.select("employees")
