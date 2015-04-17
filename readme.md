@@ -4,7 +4,7 @@
 
 ## API & Example
 
-Coming soon
+Work in progress
 
 ### localDB.update( key, search_object || replace , replace )
 
@@ -16,8 +16,8 @@ For collections you need to have an ID that we can look up in the second argumen
 
 ```javascript
   localDB.update('employee', "David" ) // for strings
-  localDB.update('employee', {body:"mybody"}) // for single objects .. no need to do a lookup 
-  localDB.update('employee', {id: 1} , {body:"my updated body"} ) // for collections
+  localDB.update('employee', {address:"123 main st"}) // for single objects .. no need to do a lookup 
+  localDB.update('employee', {id: 1} , {address:"123 main st"} ) // for collections
  
 ```
  
