@@ -4,7 +4,10 @@
 
 ## API & Example
 
+
 Work in progress
+
+requires underscore 
 
 ### localdb.create 
 ```javascript
